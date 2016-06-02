@@ -1,0 +1,36 @@
+{
+  "name": "bootstrap-tag",
+  "version": "1.0.0",
+  "description": "bootstrap-tag",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavin66/bootstrap-tag.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "jquery",
+    "tag"
+  ],
+  "author": "gavin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gavin66/bootstrap-tag/issues"
+  },
+  "homepage": "https://github.com/gavin66/bootstrap-tag#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-livereload": "^0.1.3"
+  }
+}
