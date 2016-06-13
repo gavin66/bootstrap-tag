@@ -6,141 +6,107 @@ module.exports = function(grunt) {
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>;' +
+      ' Licensed <%= pkg.license %> */\n',
+
 
     clean: {
-      all:['dist'],
-      html:['html/*.html'],
-      css:['css/*.html'],
-      js:['js/*.js'],
-      img:['img/']
+      all:['dist/*']
     },
 
     copy: {
-      src:{
-        files:[
-          {expand: true, cwd: 'src', src: ['images/*.{png,jpg,jpeg,gif}'], dest: 'dist/html'}
-        ]
-      }
-    },
-
-    concat: {
-      options: {
-        separator:';',
-        banner: '<%= banner %>',
-        stripBanners: true
+      options:{
+        expand: true,
+        filter: 'isFile'
       },
-      js: {
-        src:['js/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      },
-      css: {
-        src:['css/*.css'],
-        dest: 'dist/<%= pkg.name %>.css'
-      },
-      dist: {
-        src: ['js/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
-
-    },
-
-    uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
-      }
-    },
-
-    jshint: {
-      options: {
-        jshintrc: true
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      src: {
-        src: ['js/**/*.js']
+      dist:{
+        files:{
+          'dist/<%= pkg.name %>-debug.css':['demo/<%= pkg.name %>.css'],
+          'dist/<%= pkg.name %>-debug.js':['demo/<%= pkg.name %>.js']
+        }
       }
     },
 
     sass: {
-      dist: {
-        options: {
-          style: 'nested' // nested, compact, compressed, expanded.
-        },
-        files: {
-          'tian.css': 'tian.scss'
-        }
+      options:{
+        sourcemap:'none',
+        noCache:true,
+        style:'expanded'
       },
       dev: {
-        options:{
-          sourcemap:'none',
-          noCache:true,
-          style:'expanded'
-        },
         files:{
-          '../../public/style/backend/index.css': 'scss/backend/index.scss',
-          '../../public/style/auth/index.css': 'scss/auth/index.scss',
-          '../../public/style/app.css': 'scss/app.scss',
-          '../../public/style/frontend/article.css': 'scss/frontend/article.scss'
-
+          'demo/<%= pkg.name %>.css': 'demo/<%= pkg.name %>.scss'
         }
       }
     },
 
     cssmin: {
       dist: {
-        files: [{
-          expand: true,
-          cwd: 'release/css',
-          src: ['css/*.css', '!*.min.css'],
-          dest: 'css',
-          ext: '.min.css'
-        }]
+        files: {
+          'dist/<%= pkg.name %>.min.css': ['dist/<%= pkg.name %>-debug.css']
+        }
       }
     },
 
-    livereload: {
+    uglify: {
       options: {
-        base: ''
+        banner: '<%= banner %>',
+        mangle:true,
+        preserveComments:false
       },
-      files: ['../../public/**/*.css','../script/**/*.js']
+      dist: {
+        files: {
+          'dist/<%= pkg.name %>.min.js': ['dist/<%= pkg.name %>-debug.js']
+        }
+      }
+    },
+
+    eslint:{
+      target:'dist/tagger-debug.js'
     },
 
     watch: {
-      gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
-      },
-      src: {
-        files: '<%= jshint.src.src %>',
-        tasks: ['jshint:src']
-      },
       sass: {
-        files: ['scss/**/*.scss'],
-        tasks: ['sass:dev']
+        files: 'demo/*.scss',
+        tasks: ['sass:dev','copy:dist']
+      },
+      livereload: {
+        options:{
+          livereload:true
+        },
+        files: 'demo/**'
+      }
+    },
+
+    connect: {
+      server: {
+        options: {
+          protocol: 'http',
+          hostname: '127.0.0.1',
+          port: 9001,
+          base: 'demo',
+          keepalive: true,
+          livereload:true
+        }
       }
     }
 
   });
 
-
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-livereload');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
+  // 'eslint',
+  grunt.registerTask('default', ['clean','sass:dev','copy:dist','uglify:dist','cssmin:dist']);
 
-  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify']);
-  grunt.registerTask('live',['livereload','watch:sass']);
+  grunt.registerTask('liveTask1',['connect']);
+  grunt.registerTask('liveTask2',['watch']);
+
 };
