@@ -4,7 +4,7 @@
 +function($){
     'use strict';
 
-    var Tag = function(element,options){
+    var Tagger = function(element,options){
         this.$element = $(element); // input element
         this.$container = $(options.container);
         this.namespace = 'tagger';
@@ -15,14 +15,14 @@
         this.init();
     };
 
-    Tag.DEFAULTS = {
+    Tagger.DEFAULTS = {
         container : '#tag-container',
         divide: true, // string boolean
         color:'random',
         tags : []
     };
 
-    Tag.prototype.init = function(){
+    Tagger.prototype.init = function(){
         var that = this;
         this.tags.forEach(function(curValue){
             that.createElement(curValue);
@@ -33,7 +33,7 @@
         },this));
     };
 
-    Tag.prototype.add = function(e){
+    Tagger.prototype.add = function(e){
         var that = this;
 
         if(e) e.preventDefault();
@@ -58,12 +58,12 @@
 
     };
 
-    Tag.prototype.createElement = function(input){
+    Tagger.prototype.createElement = function(input){
         var that = this;
-        var classes = ['tag-piece-LightPink','tag-piece-conifer','tag-piece-sauce','tag-piece-RedGold','tag-piece-ultramarine','tag-piece-swarthy','tag-piece-ink','tag-piece-amber'];
+        var classes = ['tagger-piece-LightPink','tagger-piece-conifer','tagger-piece-sauce','tagger-piece-RedGold','tagger-piece-ultramarine','tagger-piece-swarthy','tagger-piece-ink','tagger-piece-amber'];
 
         var childNode = document.createElement('span');
-        $(childNode).addClass('tag-piece');
+        $(childNode).addClass('tagger-piece');
 
         if(typeof this.options.color === 'string'){
             if(this.options.color === 'random'){
@@ -71,10 +71,10 @@
             }else if( classes.indexOf(this.options.color) > -1 ){
                 $(childNode).addClass(this.options.color);
             }else{
-                $(childNode).addClass('tag-piece-ink');
+                $(childNode).addClass('tagger-piece-ink');
             }
         }else{
-            $(childNode).addClass('tag-piece-ink');
+            $(childNode).addClass('tagger-piece-ink');
         }
 
         childNode.appendChild(document.createTextNode(input));
@@ -94,23 +94,23 @@
         this.$element.val('');
     };
 
-    Tag.prototype.remove = function(e,delElement){
+    Tagger.prototype.remove = function(e,delElement){
         this.tags.indexOf(e.data.input) > -1
         && this.tags.splice(this.tags.indexOf(e.data.input),1)
         && $(delElement).fadeOut(300,function(){$(delElement).remove()})
         && this.$element.trigger('tagger.remove',[]);
     };
 
-    Tag.prototype.destroy = function(){
+    Tagger.prototype.destroy = function(){
         //that.$element.off('.' + that.type).removeData('bs.' + that.type)
     };
 
 
-    Tag.prototype.getTags = function(){
+    Tagger.prototype.getTags = function(){
         return this.tags;
     };
 
-    Tag.prototype.addTag = function(){
+    Tagger.prototype.addTag = function(){
         this.add();
     };
 
@@ -125,9 +125,9 @@
         return this.each(function(){
             var $this = $(this);
             var data = $this.data('tagger');
-            var options = $.extend({},Tag.DEFAULTS,$this.data(),typeof option == 'object' && option);
+            var options = $.extend({},Tagger.DEFAULTS,$this.data(),typeof option == 'object' && option);
 
-            if (!data) $this.data('tagger',(data = new Tag(this,options)));
+            if (!data) $this.data('tagger',(data = new Tagger(this,options)));
             if (typeof option == 'string') data[option]();
         });
     }
@@ -135,12 +135,12 @@
 
     var old = $.fn.tag;
 
-    $.fn.tag = Plugin; // 初始化插件
-    $.fn.tag.Constructor = Tag; // 构造方法,修改默认参数
+    $.fn.tagger = Plugin; // 初始化插件
+    $.fn.tagger.Constructor = Tagger; // 构造方法,修改默认参数
 
     // 解决冲突
-    $.fn.tag.noConflict = function(){
-        $.fn.tag = old;
+    $.fn.tagger.noConflict = function(){
+        $.fn.tagger = old;
         return this;
     };
 

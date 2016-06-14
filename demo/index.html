@@ -34,7 +34,7 @@
 
     jQuery(function($){
         $tag = $('#tag');
-        $tag.tag({
+        $tag.tagger({
             color:'random',
             divide: true,
             tags:[]
@@ -43,11 +43,11 @@
         });
 
         $('#get-tags-button').on('click',function(){
-            console.debug($tag.tag('getTags'));
+            console.debug($tag.tagger('getTags'));
         });
 
         $('#create-button').on('click',function(){
-            $tag.tag('addTag');
+            $tag.tagger('addTag');
         });
     });
 </script>

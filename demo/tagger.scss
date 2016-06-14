@@ -48,11 +48,12 @@ $color_ink: #50616d;
 $color_amber: #ca6924;
 
 // 显示一个标签块
-.tag-piece{
+.tagger-piece{
   cursor: default;
   opacity: .75;
   background-color: #777;
   display: inline-block;
+  text-align: center;
   text-decoration: none;
   font-weight: normal;
   font-size: 12px;
@@ -96,49 +97,49 @@ $color_amber: #ca6924;
     box-sizing: border-box;
   }
 }
-.tag-piece-LightPink{
+.tagger-piece-LightPink{
   background-color: $color_LightPink;
   &:before{
     border-right-color: $color_LightPink;
   }
 }
-.tag-piece-conifer{
+.tagger-piece-conifer{
   background-color: $color_conifer;
   &:before{
     border-right-color: $color_conifer;
   }
 }
-.tag-piece-sauce{
+.tagger-piece-sauce{
   background-color: $color_sauce;
   &:before{
     border-right-color: $color_sauce;
   }
 }
-.tag-piece-RedGold{
+.tagger-piece-RedGold{
   background-color: $color_RedGold;
   &:before{
     border-right-color: $color_RedGold;
   }
 }
-.tag-piece-ultramarine{
+.tagger-piece-ultramarine{
   background-color: $color_ultramarine;
   &:before{
     border-right-color: $color_ultramarine;
   }
 }
-.tag-piece-swarthy{
+.tagger-piece-swarthy{
   background-color: $color_swarthy;
   &:before{
     border-right-color: $color_swarthy;
   }
 }
-.tag-piece-ink{
+.tagger-piece-ink{
   background-color: $color_ink;
   &:before{
     border-right-color: $color_ink;
   }
 }
-.tag-piece-amber{
+.tagger-piece-amber{
   background-color: $color_amber;
   &:before{
     border-right-color: $color_amber;

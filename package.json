@@ -5,7 +5,7 @@
   "main": "dist/bootstrap-tag.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gavin66/bootstrap-tag.git"
+    "url": "git+https://github.com/gavin66/tagger.git"
   },
   "keywords": [
     "bootstrap",
@@ -15,9 +15,9 @@
   "author": "gavin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gavin66/bootstrap-tag/issues"
+    "url": "https://github.com/gavin66/tagger/issues"
   },
-  "homepage": "https://github.com/gavin66/bootstrap-tag#readme",
+  "homepage": "https://github.com/gavin66/tagger#readme",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",

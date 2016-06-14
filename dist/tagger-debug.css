@@ -1,8 +1,9 @@
-.tag-piece {
+.tagger-piece {
   cursor: default;
   opacity: .75;
   background-color: #777;
   display: inline-block;
+  text-align: center;
   text-decoration: none;
   font-weight: normal;
   font-size: 12px;
@@ -13,7 +14,7 @@
   position: relative;
   margin: 5px 10px;
 }
-.tag-piece:before {
+.tagger-piece:before {
   content: " ";
   width: 0;
   height: 0;
@@ -23,14 +24,14 @@
   border: 10px solid transparent;
   border-right-color: #777;
 }
-.tag-piece:hover {
+.tagger-piece:hover {
   opacity: 1;
   -webkit-transform: scale(1.05);
   -moz-transform: scale(1.05);
   -ms-transform: scale(1.05);
   transform: scale(1.05);
 }
-.tag-piece .remove {
+.tagger-piece .remove {
   cursor: pointer;
   color: #fff;
   position: absolute;
@@ -43,62 +44,62 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-.tag-piece .remove:hover, .tag-piece .remove:active {
+.tagger-piece .remove:hover, .tagger-piece .remove:active {
   text-decoration: none;
 }
 
-.tag-piece-LightPink {
+.tagger-piece-LightPink {
   background-color: #ed5736;
 }
-.tag-piece-LightPink:before {
+.tagger-piece-LightPink:before {
   border-right-color: #ed5736;
 }
 
-.tag-piece-conifer {
+.tagger-piece-conifer {
   background-color: #21a675;
 }
-.tag-piece-conifer:before {
+.tagger-piece-conifer:before {
   border-right-color: #21a675;
 }
 
-.tag-piece-sauce {
+.tagger-piece-sauce {
   background-color: #815476;
 }
-.tag-piece-sauce:before {
+.tagger-piece-sauce:before {
   border-right-color: #815476;
 }
 
-.tag-piece-RedGold {
+.tagger-piece-RedGold {
   background-color: #f2be45;
 }
-.tag-piece-RedGold:before {
+.tagger-piece-RedGold:before {
   border-right-color: #f2be45;
 }
 
-.tag-piece-ultramarine {
+.tagger-piece-ultramarine {
   background-color: #4c8dae;
 }
-.tag-piece-ultramarine:before {
+.tagger-piece-ultramarine:before {
   border-right-color: #4c8dae;
 }
 
-.tag-piece-swarthy {
+.tagger-piece-swarthy {
   background-color: #665757;
 }
-.tag-piece-swarthy:before {
+.tagger-piece-swarthy:before {
   border-right-color: #665757;
 }
 
-.tag-piece-ink {
+.tagger-piece-ink {
   background-color: #50616d;
 }
-.tag-piece-ink:before {
+.tagger-piece-ink:before {
   border-right-color: #50616d;
 }
 
-.tag-piece-amber {
+.tagger-piece-amber {
   background-color: #ca6924;
 }
-.tag-piece-amber:before {
+.tagger-piece-amber:before {
   border-right-color: #ca6924;
 }
