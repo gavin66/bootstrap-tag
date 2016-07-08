@@ -47,6 +47,7 @@ $color_ink: #50616d;
 // 琥珀
 $color_amber: #ca6924;
 
+
 // 显示一个标签块
 .tagger-piece{
   cursor: default;
@@ -94,7 +95,6 @@ $color_amber: #ca6924;
     width: 17px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box;
   }
 }
 .tagger-piece-LightPink{
@@ -144,4 +144,77 @@ $color_amber: #ca6924;
   &:before{
     border-right-color: $color_amber;
   }
+}
+
+.tagger-box{
+  position: relative;
+  .tagger-input{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    &:focus{
+      outline: 0;
+    }
+  }
+  .tagger-dropdown-menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    width: 100%;
+    padding: 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border-top: hidden;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    >li{
+      >a{
+        display: block;
+        padding: 5px 12px;
+        clear: both;
+        font-family: inherit;
+        font-weight: 300;
+        line-height: 1.5;
+        color: #303030;
+        white-space: nowrap;
+        -webkit-font-smoothing: inherit;
+        &:hover{
+          text-decoration: none;
+          color: #495c68;
+          background-color: #f5fafd;
+        }
+      }
+    }
+  }
+
+  &.open {
+    .tagger-input{
+      border-radius: 3px 3px 0 0;
+    }
+    .tagger-dropdown-menu{
+      display: block;
+    }
+  }
+
 }
