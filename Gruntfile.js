@@ -106,7 +106,7 @@ module.exports = function(grunt) {
   // 'eslint',
   grunt.registerTask('default', ['clean','sass:dev','copy:dist','uglify:dist','cssmin:dist']);
 
-  grunt.registerTask('liveTask1',['connect']);
-  grunt.registerTask('liveTask2',['watch']);
+  grunt.registerTask('serve','connect');
+  // 还需开启 watch
 
 };
