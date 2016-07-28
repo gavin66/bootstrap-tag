@@ -80,9 +80,6 @@ $tag.on('tagger.remove',function(){});
 ## 贡献
 如发现问题或者有好的提议请给我提交 Issues,谢谢!
 
-## github
-
-
-
-
+## Github 项目地址
+[tagger](https://github.com/gavin66/tagger)
 
